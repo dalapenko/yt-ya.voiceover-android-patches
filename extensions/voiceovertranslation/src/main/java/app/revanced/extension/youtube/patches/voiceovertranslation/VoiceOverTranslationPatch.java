@@ -69,7 +69,6 @@ import static app.revanced.extension.shared.Utils.showToastShort;
 @SuppressWarnings("unused")
 public class VoiceOverTranslationPatch {
 
-    private static final String TAG = "VOT";
 
     private static final int STATUS_FAILED = 0;
     private static final int STATUS_FINISHED = 1;
@@ -121,16 +120,6 @@ public class VoiceOverTranslationPatch {
 
     /** True when user started translation and original audio should be ducked before translated audio starts. */
     public static volatile boolean translationStarting = false;
-
-    private static volatile Object timeUpdateReceiver = null;
-
-    public static void setTimeUpdateReceiver(Object receiver) {
-        timeUpdateReceiver = receiver;
-    }
-
-    public static void initialize() {
-        // Handled via setVideoState bytecode hooks directly.
-    }
 
     public static void setVideoState(Enum<?> youTubeVideoState) {
         if (youTubeVideoState == null) return;
@@ -809,11 +798,6 @@ public class VoiceOverTranslationPatch {
             Object target = resolveVolumeTarget(obj);
             if (target != null) return target;
         }
-        obj = timeUpdateReceiver;
-        if (obj != null) {
-            Object target = resolveVolumeTarget(obj);
-            if (target != null) return target;
-        }
         return null;
     }
 
@@ -865,21 +849,6 @@ public class VoiceOverTranslationPatch {
     public static float getPlaybackSpeedFromPlayer() {
         float v = tryGetSpeedFromObject(getPlayerControllerFromVideoInformation());
         if (v > 0f) return v;
-        Object receiver = timeUpdateReceiver;
-        v = tryGetSpeedFromObject(receiver);
-        if (v > 0f) return v;
-        if (receiver != null) {
-            for (String getterName : new String[]{"getPlayer", "getExoPlayer", "getPlayback", "getWrappedPlayer", "getInnerPlayer", "getAudioComponent", "getController", "getPlaybackController"}) {
-                try {
-                    java.lang.reflect.Method m = receiver.getClass().getMethod(getterName);
-                    if (m.getParameterCount() == 0 && !m.getReturnType().isPrimitive()) {
-                        Object child = m.invoke(receiver);
-                        v = tryGetSpeedFromObject(child);
-                        if (v > 0f) return v;
-                    }
-                } catch (Exception ignored) { }
-            }
-        }
         return -1f;
     }
 

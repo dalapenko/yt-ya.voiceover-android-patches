@@ -73,14 +73,12 @@ import app.revanced.extension.shared.Utils;
 import app.revanced.extension.shared.settings.BooleanSetting;
 import app.revanced.extension.shared.ui.Dim;
 import app.revanced.extension.shared.ui.SheetBottomDialog;
-import app.revanced.extension.youtube.patches.voiceovertranslation.Settings;
-import app.revanced.extension.youtube.patches.voiceovertranslation.VoiceOverTranslationPatch;
 import app.revanced.extension.youtube.sponsorblock.SegmentPlaybackController;
 import app.revanced.extension.youtube.videoplayer.PlayerControlButton;
 
 import static app.revanced.extension.shared.StringRef.str;
 
-@SuppressWarnings({"unused", "deprecation"})
+@SuppressWarnings({"unused"})
 public class VoiceOverTranslationButton {
     private static PlayerControlButton instance = null;
 

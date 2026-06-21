@@ -22,3 +22,7 @@ gradle.properties
 
 # Logs
 *.log
+
+# AI
+.agents
+skills-lock.json

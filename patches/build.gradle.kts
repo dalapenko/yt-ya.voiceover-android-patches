@@ -6,7 +6,7 @@ patches {
         description = "Adds Yandex Voice Over Translation to YouTube."
         source = "https://github.com/dalapenko/revance-yt-voiceover"
         author = "dalapenko"
-        contact = "patches@revanced.app"
+        contact = "dalapenko.dev@gmail.com"
         website = "https://revanced.app"
         license = "GNU General Public License v3.0"
     }
@@ -27,3 +27,10 @@ kotlin {
         )
     }
 }
+
+tasks.named<Jar>("jar") {
+    manifest {
+        attributes["Version"] = "6.2.1"
+    }
+}
+

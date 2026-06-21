@@ -45,7 +45,7 @@ import android.media.AudioTrack;
 
 import java.lang.ref.WeakReference;
 
-import app.revanced.extension.youtube.patches.voiceovertranslation.Settings;
+
 
 @SuppressWarnings("unused")
 public final class VotOriginalVolumePatch {
