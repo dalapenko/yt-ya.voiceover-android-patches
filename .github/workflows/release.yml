@@ -18,6 +18,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          submodules: recursive
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
@@ -46,10 +47,10 @@ jobs:
 
       - name: Setup Gradle Credentials
         run: |
-          sed -i '/^githubPackagesUsername=/d' gradle.properties || true
-          sed -i '/^githubPackagesPassword=/d' gradle.properties || true
-          echo "githubPackagesUsername=${{ github.actor }}" >> gradle.properties
-          echo "githubPackagesPassword=${{ secrets.GITHUB_TOKEN }}" >> gradle.properties
+          mkdir -p ~/.gradle
+          echo "githubPackagesUsername=${{ github.actor }}" >> ~/.gradle/gradle.properties
+          echo "githubPackagesPassword=${{ secrets.GITHUB_TOKEN }}" >> ~/.gradle/gradle.properties
+          echo "org.gradle.jvmargs=-Xmx2048m -XX:MaxMetaspaceSize=512m" >> ~/.gradle/gradle.properties
 
       - name: Build Patches
         run: ./gradlew buildAndroid
