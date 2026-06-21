@@ -1,0 +1,24 @@
+# Gradle
+.gradle/
+build/
+
+# Kotlin
+.kotlin/
+
+# IDEs
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Machine/SDK configuration
+local.properties
+gradle.properties
+*/local.properties
+.navigation/
+
+# OS-specific files
+.DS_Store
+
+# Logs
+*.log

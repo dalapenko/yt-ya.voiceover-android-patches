@@ -1,0 +1,5 @@
+[submodule "origin-patches"]
+	path = origin-patches
+	url = https://gitlab.com/ReVanced/revanced-patches.git
+	ignore = untracked
+
