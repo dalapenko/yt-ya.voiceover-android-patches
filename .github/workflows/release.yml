@@ -65,7 +65,7 @@ jobs:
           
           repo = os.environ['REPO']
           tag = os.environ['TAG']
-          created_at = datetime.datetime.utcnow().isoformat() + 'Z'
+          created_at = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S')
           download_url = f'https://github.com/{repo}/releases/download/{tag}/patches.rvp'
           
           data = {
